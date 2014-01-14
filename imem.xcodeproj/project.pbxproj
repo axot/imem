@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		53ED3BEA188581CF00AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
-		53ED3BEC188581CF00AA5C56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BEB188581CF00AA5C56 /* CoreGraphics.framework */; };
-		53ED3BEE188581CF00AA5C56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BED188581CF00AA5C56 /* UIKit.framework */; };
-		53ED3BF4188581CF00AA5C56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3BF2188581CF00AA5C56 /* InfoPlist.strings */; };
-		53ED3BF6188581CF00AA5C56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3BF5188581CF00AA5C56 /* main.m */; };
-		53ED3BFA188581CF00AA5C56 /* AXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3BF9188581CF00AA5C56 /* AXAppDelegate.m */; };
-		53ED3BFC188581D000AA5C56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3BFB188581D000AA5C56 /* Images.xcassets */; };
 		53ED3C03188581D000AA5C56 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3C02188581D000AA5C56 /* XCTest.framework */; };
 		53ED3C04188581D000AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
 		53ED3C05188581D000AA5C56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BED188581CF00AA5C56 /* UIKit.framework */; };
 		53ED3C0D188581D000AA5C56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C0B188581D000AA5C56 /* InfoPlist.strings */; };
 		53ED3C0F188581D000AA5C56 /* imemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3C0E188581D000AA5C56 /* imemTests.m */; };
+		53ED3C1D1885828700AA5C56 /* AXCUIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3C191885828700AA5C56 /* AXCUIHandler.m */; };
+		53ED3C1E1885828700AA5C56 /* AXMemoryCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3C1B1885828700AA5C56 /* AXMemoryCore.m */; };
+		53ED3C1F1885828700AA5C56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3C1C1885828700AA5C56 /* main.m */; };
+		53ED3C281885879600AA5C56 /* entitlements.xml in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C251885879600AA5C56 /* entitlements.xml */; };
+		53ED3C291885879600AA5C56 /* make_all_cli.sh in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C261885879600AA5C56 /* make_all_cli.sh */; };
+		53ED3C2A1885879600AA5C56 /* make.sh in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C271885879600AA5C56 /* make.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,16 +38,21 @@
 		53ED3BED188581CF00AA5C56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53ED3BF1188581CF00AA5C56 /* imem-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "imem-Info.plist"; sourceTree = "<group>"; };
 		53ED3BF3188581CF00AA5C56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		53ED3BF5188581CF00AA5C56 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53ED3BF7188581CF00AA5C56 /* imem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "imem-Prefix.pch"; sourceTree = "<group>"; };
-		53ED3BF8188581CF00AA5C56 /* AXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXAppDelegate.h; sourceTree = "<group>"; };
-		53ED3BF9188581CF00AA5C56 /* AXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXAppDelegate.m; sourceTree = "<group>"; };
-		53ED3BFB188581D000AA5C56 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		53ED3C01188581D000AA5C56 /* imemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53ED3C02188581D000AA5C56 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		53ED3C0A188581D000AA5C56 /* imemTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "imemTests-Info.plist"; sourceTree = "<group>"; };
 		53ED3C0C188581D000AA5C56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53ED3C0E188581D000AA5C56 /* imemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = imemTests.m; sourceTree = "<group>"; };
+		53ED3C181885828700AA5C56 /* AXCUIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXCUIHandler.h; sourceTree = "<group>"; };
+		53ED3C191885828700AA5C56 /* AXCUIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXCUIHandler.m; sourceTree = "<group>"; };
+		53ED3C1A1885828700AA5C56 /* AXMemoryCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXMemoryCore.h; sourceTree = "<group>"; };
+		53ED3C1B1885828700AA5C56 /* AXMemoryCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXMemoryCore.m; sourceTree = "<group>"; };
+		53ED3C1C1885828700AA5C56 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		53ED3C23188583EA00AA5C56 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
+		53ED3C251885879600AA5C56 /* entitlements.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = entitlements.xml; sourceTree = SOURCE_ROOT; };
+		53ED3C261885879600AA5C56 /* make_all_cli.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = make_all_cli.sh; sourceTree = SOURCE_ROOT; };
+		53ED3C271885879600AA5C56 /* make.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = make.sh; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +60,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53ED3BEC188581CF00AA5C56 /* CoreGraphics.framework in Frameworks */,
-				53ED3BEE188581CF00AA5C56 /* UIKit.framework in Frameworks */,
 				53ED3BEA188581CF00AA5C56 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +99,7 @@
 		53ED3BE8188581CF00AA5C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53ED3C23188583EA00AA5C56 /* libSystem.dylib */,
 				53ED3BE9188581CF00AA5C56 /* Foundation.framework */,
 				53ED3BEB188581CF00AA5C56 /* CoreGraphics.framework */,
 				53ED3BED188581CF00AA5C56 /* UIKit.framework */,
@@ -107,9 +111,11 @@
 		53ED3BEF188581CF00AA5C56 /* imem */ = {
 			isa = PBXGroup;
 			children = (
-				53ED3BF8188581CF00AA5C56 /* AXAppDelegate.h */,
-				53ED3BF9188581CF00AA5C56 /* AXAppDelegate.m */,
-				53ED3BFB188581D000AA5C56 /* Images.xcassets */,
+				53ED3C181885828700AA5C56 /* AXCUIHandler.h */,
+				53ED3C191885828700AA5C56 /* AXCUIHandler.m */,
+				53ED3C1A1885828700AA5C56 /* AXMemoryCore.h */,
+				53ED3C1B1885828700AA5C56 /* AXMemoryCore.m */,
+				53ED3C1C1885828700AA5C56 /* main.m */,
 				53ED3BF0188581CF00AA5C56 /* Supporting Files */,
 			);
 			path = imem;
@@ -118,9 +124,11 @@
 		53ED3BF0188581CF00AA5C56 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				53ED3C251885879600AA5C56 /* entitlements.xml */,
+				53ED3C261885879600AA5C56 /* make_all_cli.sh */,
+				53ED3C271885879600AA5C56 /* make.sh */,
 				53ED3BF1188581CF00AA5C56 /* imem-Info.plist */,
 				53ED3BF2188581CF00AA5C56 /* InfoPlist.strings */,
-				53ED3BF5188581CF00AA5C56 /* main.m */,
 				53ED3BF7188581CF00AA5C56 /* imem-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -220,8 +228,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53ED3BF4188581CF00AA5C56 /* InfoPlist.strings in Resources */,
-				53ED3BFC188581D000AA5C56 /* Images.xcassets in Resources */,
+				53ED3C2A1885879600AA5C56 /* make.sh in Resources */,
+				53ED3C281885879600AA5C56 /* entitlements.xml in Resources */,
+				53ED3C291885879600AA5C56 /* make_all_cli.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +249,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53ED3BF6188581CF00AA5C56 /* main.m in Sources */,
-				53ED3BFA188581CF00AA5C56 /* AXAppDelegate.m in Sources */,
+				53ED3C1E1885828700AA5C56 /* AXMemoryCore.m in Sources */,
+				53ED3C1D1885828700AA5C56 /* AXCUIHandler.m in Sources */,
+				53ED3C1F1885828700AA5C56 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,10 +372,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "Mac Developer: Shao Zheng (25D3GZ4C6N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imem/imem-Prefix.pch";
 				INFOPLIST_FILE = "imem/imem-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -375,10 +387,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "Mac Developer: Shao Zheng (25D3GZ4C6N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imem/imem-Prefix.pch";
 				INFOPLIST_FILE = "imem/imem-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

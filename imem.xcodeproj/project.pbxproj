@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		538A2E1E1886817900E4BD97 /* AXProcessCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 538A2E1D1886817900E4BD97 /* AXProcessCenter.m */; };
+		53B42EEE1886B6320007ACED /* libhistory.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B42EE51886B34E0007ACED /* libhistory.6.0.dylib */; };
+		53B42EEF1886B63E0007ACED /* libreadline.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B42EEA1886B34E0007ACED /* libreadline.6.0.dylib */; };
 		53ED3BEA188581CF00AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
 		53ED3C03188581D000AA5C56 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3C02188581D000AA5C56 /* XCTest.framework */; };
 		53ED3C04188581D000AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
@@ -35,6 +37,24 @@
 /* Begin PBXFileReference section */
 		538A2E1C1886817900E4BD97 /* AXProcessCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXProcessCenter.h; sourceTree = "<group>"; };
 		538A2E1D1886817900E4BD97 /* AXProcessCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProcessCenter.m; sourceTree = "<group>"; };
+		53B42EDA1886B34E0007ACED /* chardefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chardefs.h; sourceTree = "<group>"; };
+		53B42EDB1886B34E0007ACED /* history.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = history.h; sourceTree = "<group>"; };
+		53B42EDC1886B34E0007ACED /* keymaps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = keymaps.h; sourceTree = "<group>"; };
+		53B42EDD1886B34E0007ACED /* readline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = readline.h; sourceTree = "<group>"; };
+		53B42EDE1886B34E0007ACED /* rlconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rlconf.h; sourceTree = "<group>"; };
+		53B42EDF1886B34E0007ACED /* rlstdc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rlstdc.h; sourceTree = "<group>"; };
+		53B42EE01886B34E0007ACED /* rltypedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rltypedefs.h; sourceTree = "<group>"; };
+		53B42EE11886B34E0007ACED /* tilde.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tilde.h; sourceTree = "<group>"; };
+		53B42EE31886B34E0007ACED /* libhistory.5.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libhistory.5.2.dylib; sourceTree = "<group>"; };
+		53B42EE41886B34E0007ACED /* libhistory.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libhistory.5.dylib; sourceTree = "<group>"; };
+		53B42EE51886B34E0007ACED /* libhistory.6.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libhistory.6.0.dylib; sourceTree = "<group>"; };
+		53B42EE61886B34E0007ACED /* libhistory.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libhistory.6.dylib; sourceTree = "<group>"; };
+		53B42EE71886B34E0007ACED /* libhistory.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libhistory.dylib; sourceTree = "<group>"; };
+		53B42EE81886B34E0007ACED /* libreadline.5.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libreadline.5.2.dylib; sourceTree = "<group>"; };
+		53B42EE91886B34E0007ACED /* libreadline.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libreadline.5.dylib; sourceTree = "<group>"; };
+		53B42EEA1886B34E0007ACED /* libreadline.6.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libreadline.6.0.dylib; sourceTree = "<group>"; };
+		53B42EEB1886B34E0007ACED /* libreadline.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libreadline.6.dylib; sourceTree = "<group>"; };
+		53B42EEC1886B34E0007ACED /* libreadline.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libreadline.dylib; sourceTree = "<group>"; };
 		53ED3BE6188581CF00AA5C56 /* imem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53ED3BE9188581CF00AA5C56 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53ED3BEB188581CF00AA5C56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B42EEF1886B63E0007ACED /* libreadline.6.0.dylib in Frameworks */,
+				53B42EEE1886B6320007ACED /* libhistory.6.0.dylib in Frameworks */,
 				53ED3BEA188581CF00AA5C56 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +102,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53B42ED71886B34E0007ACED /* readline.6.0-7 */ = {
+			isa = PBXGroup;
+			children = (
+				53B42ED81886B34E0007ACED /* include */,
+				53B42EE21886B34E0007ACED /* lib */,
+			);
+			path = "readline.6.0-7";
+			sourceTree = "<group>";
+		};
+		53B42ED81886B34E0007ACED /* include */ = {
+			isa = PBXGroup;
+			children = (
+				53B42ED91886B34E0007ACED /* readline */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		53B42ED91886B34E0007ACED /* readline */ = {
+			isa = PBXGroup;
+			children = (
+				53B42EDA1886B34E0007ACED /* chardefs.h */,
+				53B42EDB1886B34E0007ACED /* history.h */,
+				53B42EDC1886B34E0007ACED /* keymaps.h */,
+				53B42EDD1886B34E0007ACED /* readline.h */,
+				53B42EDE1886B34E0007ACED /* rlconf.h */,
+				53B42EDF1886B34E0007ACED /* rlstdc.h */,
+				53B42EE01886B34E0007ACED /* rltypedefs.h */,
+				53B42EE11886B34E0007ACED /* tilde.h */,
+			);
+			path = readline;
+			sourceTree = "<group>";
+		};
+		53B42EE21886B34E0007ACED /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				53B42EE31886B34E0007ACED /* libhistory.5.2.dylib */,
+				53B42EE41886B34E0007ACED /* libhistory.5.dylib */,
+				53B42EE51886B34E0007ACED /* libhistory.6.0.dylib */,
+				53B42EE61886B34E0007ACED /* libhistory.6.dylib */,
+				53B42EE71886B34E0007ACED /* libhistory.dylib */,
+				53B42EE81886B34E0007ACED /* libreadline.5.2.dylib */,
+				53B42EE91886B34E0007ACED /* libreadline.5.dylib */,
+				53B42EEA1886B34E0007ACED /* libreadline.6.0.dylib */,
+				53B42EEB1886B34E0007ACED /* libreadline.6.dylib */,
+				53B42EEC1886B34E0007ACED /* libreadline.dylib */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		53ED3BDD188581CF00AA5C56 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +173,7 @@
 		53ED3BE8188581CF00AA5C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53B42ED71886B34E0007ACED /* readline.6.0-7 */,
 				53ED3C23188583EA00AA5C56 /* libSystem.dylib */,
 				53ED3BE9188581CF00AA5C56 /* Foundation.framework */,
 				53ED3BEB188581CF00AA5C56 /* CoreGraphics.framework */,
@@ -376,13 +448,19 @@
 		53ED3C13188581D000AA5C56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Mac Developer: Shao Zheng (25D3GZ4C6N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imem/imem-Prefix.pch";
 				INFOPLIST_FILE = "imem/imem-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/readline.6.0-7/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/readline.6.0-7/include";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -391,13 +469,19 @@
 		53ED3C14188581D000AA5C56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Mac Developer: Shao Zheng (25D3GZ4C6N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imem/imem-Prefix.pch";
 				INFOPLIST_FILE = "imem/imem-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/readline.6.0-7/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/readline.6.0-7/include";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

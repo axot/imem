@@ -26,10 +26,7 @@
 
 @implementation AXMemoryCore
 
-@synthesize addressList = _addressList;
-@synthesize aliasList   = _aliasList;
-
-- (NSMutableArray*)getAddressList
+- (NSMutableArray*)addressList
 {
   if(!_addressList)
   {
@@ -38,7 +35,7 @@
   return _addressList;
 }
 
-- (NSMutableDictionary*)getAliasList
+- (NSMutableDictionary*)aliasList
 {
   if(_aliasList)
   {

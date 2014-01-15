@@ -43,10 +43,12 @@
 
 #pragma mark -- public methods
 
-- (void)handlerPID:(int)pid
+- (void)startHandler
 {
   char buf[256];
   NSString* line;
+  
+  printf("imem> ");
   while (fgets(buf, 256, stdin))
   {
     line = [NSString stringWithCString:buf encoding:NSUTF8StringEncoding];
@@ -57,13 +59,21 @@
     
     if ([trimed isEqualToString:@"c"] || [trimed isEqualToString:@"change"])
     {
-      // change a to b in all results
-      if (items.count == 3)
+      if (items.count < 3)
       {
-        NSLog(@"Alter %@ to %@", items[2], items[3]);
+        fprintf(stderr, "change a b\n");
+      }
+      // change a to b in all results
+      else if (items.count == 3)
+      {
+        if ([self.delegate respondsToSelector:@selector(changeCommandNotification:Parameters:)])
+        {
+          NSArray* params = @[items[1], items[2]];
+          [self.delegate changeCommandNotification:@"Change" Parameters:params];
+        }
       }
     }
-    if ([trimed isEqualToString:@"cs"] || [trimed isEqualToString:@"changeSearch"])
+    else if ([trimed isEqualToString:@"cs"] || [trimed isEqualToString:@"changeSearch"])
     {
       // change all value in address list to b
       if (items.count == 2)
@@ -130,6 +140,8 @@
     }
     else
       NSLog(@"unknown command");
+    
+    printf("imem> ");
   }
 }
 

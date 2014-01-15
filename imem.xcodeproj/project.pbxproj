@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		538A2E1E1886817900E4BD97 /* AXProcessCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 538A2E1D1886817900E4BD97 /* AXProcessCenter.m */; };
 		53ED3BEA188581CF00AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
 		53ED3C03188581D000AA5C56 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3C02188581D000AA5C56 /* XCTest.framework */; };
 		53ED3C04188581D000AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		538A2E1C1886817900E4BD97 /* AXProcessCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXProcessCenter.h; sourceTree = "<group>"; };
+		538A2E1D1886817900E4BD97 /* AXProcessCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProcessCenter.m; sourceTree = "<group>"; };
 		53ED3BE6188581CF00AA5C56 /* imem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53ED3BE9188581CF00AA5C56 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53ED3BEB188581CF00AA5C56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,8 @@
 				53ED3C191885828700AA5C56 /* AXCUIHandler.m */,
 				53ED3C1A1885828700AA5C56 /* AXMemoryCore.h */,
 				53ED3C1B1885828700AA5C56 /* AXMemoryCore.m */,
+				538A2E1C1886817900E4BD97 /* AXProcessCenter.h */,
+				538A2E1D1886817900E4BD97 /* AXProcessCenter.m */,
 				53ED3C1C1885828700AA5C56 /* main.m */,
 				53ED3BF0188581CF00AA5C56 /* Supporting Files */,
 			);
@@ -250,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53ED3C1E1885828700AA5C56 /* AXMemoryCore.m in Sources */,
+				538A2E1E1886817900E4BD97 /* AXProcessCenter.m in Sources */,
 				53ED3C1D1885828700AA5C56 /* AXCUIHandler.m in Sources */,
 				53ED3C1F1885828700AA5C56 /* main.m in Sources */,
 			);
@@ -458,6 +464,7 @@
 				53ED3C14188581D000AA5C56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		53ED3C15188581D000AA5C56 /* Build configuration list for PBXNativeTarget "imemTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +473,7 @@
 				53ED3C17188581D000AA5C56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

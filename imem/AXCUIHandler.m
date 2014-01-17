@@ -73,6 +73,8 @@ char *stripwhite(char *string)
   while (YES)
   {
     buf = readline("imem> ");
+    
+    // ctrl-d
     if(!buf)
     {
       printf("\n");
@@ -90,19 +92,32 @@ char *stripwhite(char *string)
       
       if ([trimed isEqualToString:@"c"] || [trimed isEqualToString:@"change"])
       {
-        if (items.count < 3)
+        if (items.count == 1)
         {
-          fprintf(stderr, "change a b\n");
+          if ([self.delegate respondsToSelector:@selector(changeCommandNotification:Parameters:Handler:)])
+          {
+            NSArray* params = @[];
+            [self.delegate changeCommandNotification:@"Change" Parameters:params Handler:self];
+          }
+        }
+        else if (items.count == 2)
+        {
+          if ([self.delegate respondsToSelector:@selector(changeCommandNotification:Parameters:Handler:)])
+          {
+            NSArray* params = @[items[1]];
+            [self.delegate changeCommandNotification:@"Change" Parameters:params Handler:self];
+          }
         }
         // change a to b in all results
         else if (items.count == 3)
         {
-          if ([self.delegate respondsToSelector:@selector(changeCommandNotification:Parameters:)])
+          if ([self.delegate respondsToSelector:@selector(changeCommandNotification:Parameters:Handler:)])
           {
             NSArray* params = @[items[1], items[2]];
-            [self.delegate changeCommandNotification:@"Change" Parameters:params];
+            [self.delegate changeCommandNotification:@"Change" Parameters:params Handler:self];
           }
         }
+        
       }
       else if ([trimed isEqualToString:@"cs"] || [trimed isEqualToString:@"changeSearch"])
       {
@@ -125,13 +140,20 @@ char *stripwhite(char *string)
         // search the same value as last time using address list
         if (items.count == 1)
         {
-          
+          if ([self.delegate respondsToSelector:@selector(searchCommandNotification:Parameters:Handler:)])
+          {
+            NSArray* params = @[];
+            [self.delegate searchCommandNotification:@"Search" Parameters:params Handler:self];
+          }
         }
         // search a value
         if (items.count == 2)
         {
-          NSLog(@"search for %@", items[2]);
-          
+          if ([self.delegate respondsToSelector:@selector(searchCommandNotification:Parameters:Handler:)])
+          {
+            NSArray* params = @[items[1]];
+            [self.delegate searchCommandNotification:@"Search" Parameters:params Handler:self];
+          }
         }
       }
       else if ([trimed isEqualToString:@"a"] || [trimed isEqualToString:@"alias"])
@@ -139,26 +161,39 @@ char *stripwhite(char *string)
         // show all alias
         if (items.count == 1)
         {
-          
-          
-        }
-        // show a alias
-        else if (items.count == 1)
-        {
-          
+          if ([self.delegate respondsToSelector:@selector(aliasCommandNotification:Parameters:Handler:)])
+          {
+            NSArray* params = @[];
+            [self.delegate aliasCommandNotification:@"Alias" Parameters:params Handler:self];
+          }
         }
         // set a alias
-        else if (items.count > 1)
+        else if (items.count == 2)
+        {
+          if ([self.delegate respondsToSelector:@selector(aliasCommandNotification:Parameters:Handler:)])
+          {
+            NSArray* params = @[items[1]];
+            [self.delegate aliasCommandNotification:@"Alias" Parameters:params Handler:self];
+          }
+        }
+        
+        // not implement
+        else if (items.count > 2)
         {
           
         }
       }
-      else if ([trimed isEqualToString:@"ls"] || [trimed isEqualToString:@"list"])
+      else if ([trimed isEqualToString:@"l"] ||
+               [trimed isEqualToString:@"ls"] ||
+               [trimed isEqualToString:@"list"])
       {
         // show current address list
         if (items.count == 1)
         {
-          
+          if ([self.delegate respondsToSelector:@selector(listCommandNotification:Parameters:Handler:)])
+          {
+            [self.delegate listCommandNotification:@"List" Parameters:@[] Handler:self];
+          }
         }
       }
       else if ([trimed isEqualToString:@"r"] || [trimed isEqualToString:@"reset"])
@@ -166,14 +201,50 @@ char *stripwhite(char *string)
         // reset last address list
         if (items.count == 1)
         {
-          
+          if ([self.delegate respondsToSelector:@selector(resetCommandNotification:Parameters:Handler:)])
+          {
+            [self.delegate resetCommandNotification:@"Reset" Parameters:@[] Handler:self];
+          }
         }
       }
+      else if ([trimed isEqualToString:@"help"])
+      {
+        // TODO
+        fprintf(stderr, "command description");
+      }
       else
-        NSLog(@"unknown command");
+      {
+        if ([self.delegate respondsToSelector:@selector(userCommandNotification:Parameters:Handler:)])
+        {
+          NSArray* params =
+            [items objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, items.count-1)]];
+          
+          [self.delegate userCommandNotification:trimed Parameters:params Handler:self];
+        }
+      }
     }
     free(buf);
   }
+}
+
+- (NSString*)askUserAnwserWithString:(NSString*)line
+{
+  char *buf = readline([line UTF8String]);
+  
+  // ctrl-d
+  if(!buf)
+  {
+    printf("\n");
+  }
+  
+  char* stripedLine = stripwhite(buf);
+  if (*stripedLine)
+  {
+    NSString* ans = [NSString stringWithUTF8String:stripedLine];
+    free(stripedLine);
+    return ans;
+  }
+  return @"";
 }
 
 @end

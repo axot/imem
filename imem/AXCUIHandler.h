@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class AXCUIHandler;
 @protocol AXCUIHandlerDelegate <NSObject>
 
 @optional
-- (void)changeCommandNotification:(NSString*)command Parameters:(NSArray*)params;
-- (void)searchCommandNotification:(NSString*)command Parameters:(NSArray*)params;
-- (void)changesearchCommandNotification:(NSString*)command Parameters:(NSArray*)params;
-- (void)aliasCommandNotification:(NSString*)command Parameters:(NSArray*)params;
-- (void)listCommandNotification:(NSString*)command Parameters:(NSArray*)params;
-- (void)resetCommandNotification:(NSString*)command Parameters:(NSArray*)params;
+- (void)changeCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
+- (void)searchCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
+- (void)changesearchCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
+- (void)aliasCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
+- (void)listCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
+- (void)resetCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
+- (void)userCommandNotification:(NSString*)command Parameters:(NSArray*)params Handler:(AXCUIHandler*)handler;
 
 @end
 
@@ -26,5 +28,6 @@
 
 + (AXCUIHandler*)sharedManager;
 - (void)startHandler;
+- (NSString*)askUserAnwserWithString:(NSString*)line;
 
 @end

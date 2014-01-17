@@ -12,6 +12,13 @@
 
 - (id)initWithPid:(int) aPid;
 - (void)setPid:(int) aPid;
-- (BOOL)changeValue:(int)aVar forTargetValue:(int)tVar;
+- (NSArray*)searchForIntValue:(int)val;
+- (BOOL)changeValueInAddressListToIntValue:(int)var;
+- (BOOL)changeToIntValue:(int)var forAddress:(int)addr;
+- (void)resetAddressList;
+- (NSArray*)getAddressList;
+- (BOOL)setAlias:(NSString*)name forAddresses:(NSArray*)addresses;
+- (NSDictionary*)getAliasList;
+- (int)intValueForAddress:(int)addr;
 
 @end

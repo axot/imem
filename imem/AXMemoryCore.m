@@ -6,52 +6,33 @@
 //
 //
 
+//#define DEBUG_INFO_MEMORYCORE
+
 #import "AXMemoryCore.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <mach/mach.h>
 #include <unistd.h>
 
+//#define DEBUG_INFO
+
 @interface AXMemoryCore()
 
-@property (strong, nonatomic) NSMutableArray* addressList;
-@property (strong, nonatomic) NSMutableDictionary* aliasList;
-@property (assign, nonatomic) task_t task;
-@property (assign, nonatomic) pid_t pid;
+@property (nonatomic, readwrite) NSMutableArray* addressList;
+@property (nonatomic, readwrite) NSMutableDictionary* aliasList;
+@property (nonatomic) task_t task;
+@property (nonatomic) pid_t pid;
 
 - (task_t)getTaskForPid:(pid_t)aPid;
+- (BOOL)searchRegionHasPrivilege:(vm_prot_t)pri
+                       withBlock:(void (^)(vm_address_t offset, mach_msg_type_number_t size, char *buf))block;
 
 @end
 
 @implementation AXMemoryCore
 
-- (NSArray*)getAddressList
-{
-  return [NSArray arrayWithArray:self.addressList];
-}
-
-- (NSDictionary*)getAliasList
-{
-  return [NSDictionary dictionaryWithDictionary:self.aliasList];
-}
-
-- (NSMutableArray*)addressList
-{
-  if(!_addressList)
-  {
-    _addressList = [[NSMutableArray alloc] init];
-  }
-  return _addressList;
-}
-
-- (NSMutableDictionary*)aliasList
-{
-  if(!_aliasList)
-  {
-    _aliasList = [[NSMutableDictionary alloc] init];
-  }
-  return _aliasList;
-}
+//@synthesize addressList = _addressList;
+//@synthesize aliasList = _aliasList;
 
 - (void)setPid:(int)aPid
 {
@@ -72,6 +53,8 @@
   {
     self.pid = aPid;
     self.task = [self getTaskForPid:self.pid];
+    _addressList = [[NSMutableArray alloc] init];
+    _aliasList = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -122,7 +105,7 @@
   
   if ([self.addressList indexOfObject:@(addr)] == NSNotFound )
   {
-    [self.addressList addObject:@(addr)];
+    [(NSMutableArray *)self.addressList addObject:@(addr)];
   }
   printf(" write ok.\n");
   return YES;
@@ -130,7 +113,8 @@
 
 - (BOOL)setAlias:(NSString*)name forAddresses:(NSArray*)addresses
 {
-  [self.aliasList setObject:addresses forKey:name];
+  [(NSMutableDictionary *)self.aliasList setObject:[NSArray arrayWithArray:addresses]
+                                            forKey:name];
   return YES;
 }
 
@@ -142,103 +126,139 @@
     {
       if ([self intValueForAddress:addr.intValue] != tVar)
       {
-        [self.addressList removeObject:addr];
+        [(NSMutableArray *)self.addressList removeObject:addr];
       }
     }
   }
   else
   {
-    kern_return_t kr;
-    
-    mach_msg_type_number_t region_size = sizeof(int);
-    int _basic[VM_REGION_BASIC_INFO_COUNT];
-    vm_region_basic_info_t basic = (vm_region_basic_info_t)_basic;
-    mach_msg_type_number_t infocnt;
-    infocnt = VM_REGION_BASIC_INFO_COUNT;
-    mach_port_t objname;
-    
-    vm_address_t region_addr = 0x10000 - region_size;
-    while(region_addr < 0x40000000 - region_size)
-    {
-      region_addr += region_size;
-      
-      kr = vm_region(self.task,
-                     &region_addr,
-                     &region_size,
-                     VM_REGION_BASIC_INFO,
-                     (vm_region_info_t)basic,
-                     &infocnt,
-                     &objname);
-      
-      if (kr != KERN_SUCCESS)
-      {
-        fprintf(stderr, "vm_region failed for address: 0x%x err: %d\n", region_addr, kr);
-        continue;
-      }
-      
-      if(basic->protection != (VM_PROT_READ | VM_PROT_WRITE))
-        continue;
-      
-      char *ragion_buf = (char*)malloc(region_size);
-      
-      vm_size_t count;
-      
-      kr = vm_read_overwrite(self.task,
-                             region_addr,
-                             region_size,
-                             (vm_offset_t)ragion_buf,
-                             &count);
-      
-      if (kr != KERN_SUCCESS)
-      {
-        fprintf(stderr, "vm_read_overwrite failed for address: 0x%x err: %d\n", region_addr, kr);
-        continue;
-      }
-      
-      for (size_t i = 0; i < region_size; i += sizeof(int))
-      {
-        int val = *(int*)((size_t)ragion_buf+i);
-        if(val == tVar)
-        {
-          [self.addressList addObject:@((size_t)region_addr+i)];
-        }
-      }
-      free(ragion_buf);
-    }
+    [self searchRegionHasPrivilege:VM_PROT_READ | VM_PROT_WRITE
+                         withBlock:^(vm_address_t offset, mach_msg_type_number_t size, char *buf) {
+                           for (size_t i = 0; i < size; i += sizeof(int))
+                           {
+                             int val = *(int*)((vm_address_t)buf+i);
+                             if(val == tVar)
+                             {
+                               [(NSMutableArray *)self.addressList addObject:@(offset+i)];
+                             }
+                           }
+                         }];
   }
+  return [NSArray arrayWithArray:self.addressList];
+}
+
+- (NSArray*)searchForString:(const char*)key
+{
+  [self searchRegionHasPrivilege:VM_PROT_READ | VM_PROT_WRITE
+                       withBlock:^(vm_address_t offset, mach_msg_type_number_t size, char *buf) {
+#ifdef DEBUG_INFO
+                         NSLog(@"search region: %x", offset);
+#endif
+                         int len = strlen(key);
+                         for (size_t i = 0; i < size-len+1; i++)
+                         {
+                           
+                           char* addr = (char*)((vm_address_t)buf+i);
+                           if(strncmp(key, addr, len) == 0)
+                           {
+#ifdef DEBUG_INFO
+                             NSLog(@"found: %x", (vm_address_t)addr);
+#endif
+                             [(NSMutableArray *)self.addressList addObject:@(offset+i)];
+                           }
+                         }
+                       }];
   return [NSArray arrayWithArray:self.addressList];
 }
 
 - (void)resetAddressList
 {
-  [self.addressList removeAllObjects];
+  [(NSMutableArray *)self.addressList removeAllObjects];
+}
+
+- (BOOL)searchRegionHasPrivilege:(vm_prot_t)pri
+                       withBlock:(void (^)(vm_address_t offset, mach_msg_type_number_t size, char *buf))block
+{
+  kern_return_t kr;
+  
+  mach_msg_type_number_t region_size = 0;
+  vm_region_basic_info_data_t info;
+  mach_msg_type_number_t infoCnt;
+  mach_port_t objname;
+  
+  vm_address_t region_addr = 1;
+  while((size_t)region_addr != 0)
+  {
+    region_addr += region_size;
+    
+    kr = vm_region(self.task,
+                   &region_addr,
+                   &region_size,
+                   VM_REGION_BASIC_INFO,
+                   (vm_region_info_t)&info,
+                   &infoCnt,
+                   &objname);
+    
+    if (kr != KERN_SUCCESS)
+    {
+#ifdef DEBUG_INFO
+      fprintf(stderr, "vm_region failed for address: 0x%x err: %d\n", region_addr, kr);
+#endif
+      return NO;
+    }
+    
+    if(info.protection != pri)
+      continue;
+    
+    char *region_buf = (char*)malloc(region_size);
+    
+    vm_size_t count;
+    
+    kr = vm_read_overwrite(self.task,
+                           region_addr,
+                           region_size,
+                           (vm_offset_t)region_buf,
+                           &count);
+    
+    if (kr != KERN_SUCCESS)
+    {
+#ifdef DEBUG_INFO
+      fprintf(stderr, "vm_read_overwrite failed for address: 0x%x err: %d\n", region_addr, kr);
+#endif
+      free(region_buf);
+      return NO;
+    }
+    
+    block(region_addr, region_size, region_buf);
+    free(region_buf);
+  }
+  
+  return YES;
 }
 
 - (int)intValueForAddress:(int)addr
 {
   kern_return_t kr;
-  vm_size_t count;
   
-  int _basic[VM_REGION_BASIC_INFO_COUNT];
-  vm_region_basic_info_t basic = (vm_region_basic_info_t)_basic;
-  mach_msg_type_number_t infocnt;
-  infocnt = VM_REGION_BASIC_INFO_COUNT;
+  mach_msg_type_number_t region_size = 0;
+  vm_region_basic_info_data_t info;
+  mach_msg_type_number_t infoCnt;
   mach_port_t objname;
   
   vm_address_t region_addr = addr;
-  mach_msg_type_number_t region_size = sizeof(int);
   
   kr = vm_region(self.task,
                  &region_addr,
                  &region_size,
                  VM_REGION_BASIC_INFO,
-                 (vm_region_info_t)basic,
-                 &infocnt,
+                 (vm_region_info_t)&info,
+                 &infoCnt,
                  &objname);
   
-  if(kr == KERN_SUCCESS && basic->protection & VM_PROT_READ)
+  if(kr == KERN_SUCCESS && info.protection & VM_PROT_READ)
   {
     char *ragion_buf = (char*)malloc(region_size);
+    vm_size_t count;
     
     kr = vm_read_overwrite(self.task,
                             region_addr,

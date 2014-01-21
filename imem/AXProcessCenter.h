@@ -13,8 +13,8 @@
 
 @interface AXProcessCenter : NSObject <AXCUIHandlerDelegate>
 
-@property (strong, nonatomic) AXMemoryCore* memProcessor;
-@property (assign, nonatomic) int pid;
+@property (nonatomic) AXMemoryCore* memProcessor;
+@property (nonatomic) int pid;
 
 - (AXProcessCenter*)initWithPid:(int)pid;
 

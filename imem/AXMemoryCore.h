@@ -10,15 +10,17 @@
 
 @interface AXMemoryCore : NSObject
 
+@property (readonly) NSArray* addressList;
+@property (readonly) NSDictionary* aliasList;
+
 - (id)initWithPid:(int) aPid;
 - (void)setPid:(int) aPid;
 - (NSArray*)searchForIntValue:(int)val;
+- (NSArray*)searchForString:(const char*)key;
 - (BOOL)changeValueInAddressListToIntValue:(int)var;
 - (BOOL)changeToIntValue:(int)var forAddress:(int)addr;
 - (void)resetAddressList;
-- (NSArray*)getAddressList;
 - (BOOL)setAlias:(NSString*)name forAddresses:(NSArray*)addresses;
-- (NSDictionary*)getAliasList;
 - (int)intValueForAddress:(int)addr;
 
 @end

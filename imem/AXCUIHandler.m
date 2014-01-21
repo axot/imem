@@ -212,6 +212,11 @@ char *stripwhite(char *string)
         // TODO
         fprintf(stderr, "command description");
       }
+      else if ([trimed isEqualToString:@"q"] ||
+               [trimed isEqualToString:@"quit"])
+      {
+        exit(EXIT_SUCCESS);
+      }
       else
       {
         if ([self.delegate respondsToSelector:@selector(userCommandNotification:Parameters:Handler:)])

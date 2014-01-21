@@ -9,10 +9,31 @@
 #import "AXProcessCenter.h"
 #import "AXMemoryCore.h"
 
+#define DEBUG_INFO
+
+@interface NSString (NSAddition);
+-(NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end;
+@end
+
+@implementation NSString (NSAddition)
+-(NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end {
+  NSScanner* scanner = [NSScanner scannerWithString:self];
+  [scanner setCharactersToBeSkipped:nil];
+  [scanner scanUpToString:start intoString:NULL];
+  if ([scanner scanString:start intoString:NULL]) {
+    NSString* result = nil;
+    if ([scanner scanUpToString:end intoString:&result]) {
+      return result;
+    }
+  }
+  return nil;
+}
+@end
+
 @interface AXProcessCenter()
 
-@property (nonatomic, assign) int lastSearchedValue;
-@property (nonatomic, assign) int lastChangedValue;
+@property (nonatomic) int lastSearchedValue;
+@property (nonatomic) int lastChangedValue;
 
 @end
 
@@ -80,7 +101,7 @@
       NSString *quest, *ans;
       printf("\n");
 START:
-      quest = [NSString stringWithFormat:@"[%d] 0x%lx [y/n/a(bort)]: default no: ", i, addr.unsignedLongValue];
+      quest = [NSString stringWithFormat:@"[%d] 0x%08lx [y/n/a(bort)]: default no: ", i, addr.unsignedLongValue];
       ++i;
 
       ans = [handler askUserAnwserWithString:quest];
@@ -111,7 +132,7 @@ START:
   else if(params.count == 1)
   {
     printf("\n");
-    if (!self.memProcessor.getAddressList.count)
+    if (!self.memProcessor.addressList.count)
     {
       fprintf(stderr, "no address was be registered\n");
     }
@@ -138,8 +159,18 @@ START:
   }
   else if(params.count == 1)
   {
-    resultList = [self.memProcessor searchForIntValue:[params[0] intValue]];
-    self.lastSearchedValue = [params[0] intValue];
+    if ([params[0] hasPrefix:@"\""])
+    {
+#ifdef DEBUG_INFO
+      NSLog(@"searching for string: %@", [params[0] stringBetweenString:@"\"" andString:@"\""]);
+#endif
+      resultList = [self.memProcessor searchForString:[params[0] stringBetweenString:@"\"" andString:@"\""].UTF8String];
+    }
+    else
+    {
+      resultList = [self.memProcessor searchForIntValue:[params[0] intValue]];
+      self.lastSearchedValue = [params[0] intValue];
+    }
   }
   
   if(resultList != nil)
@@ -164,14 +195,14 @@ START:
 {
   if (params.count == 0)
   {
-    for(NSString* name in self.memProcessor.getAliasList)
+    for(NSString* name in self.memProcessor.aliasList)
     {
       printf("%s\n", name.UTF8String);
     }
   }
   else if(params.count == 1)
   {
-    [self.memProcessor setAlias:params[0] forAddresses:self.memProcessor.getAddressList];
+    [self.memProcessor setAlias:params[0] forAddresses:self.memProcessor.addressList];
   }
   
   else if(params.count > 1)
@@ -184,7 +215,7 @@ START:
 {
   printf("%s command\n", [command UTF8String]);
   
-  NSArray* addrs = [self.memProcessor getAddressList];
+  NSArray* addrs = [self.memProcessor addressList];
   int i = 0;
   for (NSNumber* addr in addrs)
   {
@@ -203,7 +234,7 @@ START:
 {
   if (params.count == 0)
   {
-    id values = self.memProcessor.getAliasList[command];
+    id values = self.memProcessor.aliasList[command];
     
     if (values)
     {
@@ -222,7 +253,7 @@ START:
   
   else if (params.count == 1)
   {
-    id values = self.memProcessor.getAliasList[command];
+    id values = self.memProcessor.aliasList[command];
     if (values)
     {
       for (NSNumber* addr in values)

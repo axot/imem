@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "AXCUIHandler.h"
-#import "AXProcessCenter.h"
 
 #pragma mark -- Main entry
 
@@ -60,9 +59,7 @@ int main(int argc, const char * argv[])
     }
     
     printf("Attaching Process ID: %d\n\n", pid);
-    AXProcessCenter* center = [[AXProcessCenter alloc] initWithPid:atol(argv[1])];
-    AXCUIHandler* handler = [AXCUIHandler sharedManager];
-    handler.delegate = center;
+    AXCUIHandler* handler = [[AXCUIHandler alloc] initWithPid:pid];
     [handler startHandler];
   }
   return 0;

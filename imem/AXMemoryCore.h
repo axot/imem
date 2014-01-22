@@ -12,15 +12,17 @@
 
 @property (readonly) NSArray* addressList;
 @property (readonly) NSDictionary* aliasList;
+@property (nonatomic) int lastSearchedValue;
+@property (nonatomic) int lastChangedValue;
 
-- (id)initWithPid:(int) aPid;
-- (void)setPid:(int) aPid;
++ (AXMemoryCore*)sharedInstance;
+- (void)setPid:(NSUInteger)aPid;
 - (NSArray*)searchForIntValue:(int)val;
 - (NSArray*)searchForString:(const char*)key;
 - (BOOL)changeValueInAddressListToIntValue:(int)var;
-- (BOOL)changeToIntValue:(int)var forAddress:(int)addr;
+- (BOOL)changeToIntValue:(int)var forAddress:(size_t)addr;
 - (void)resetAddressList;
 - (BOOL)setAlias:(NSString*)name forAddresses:(NSArray*)addresses;
-- (int)intValueForAddress:(int)addr;
+- (int)intValueForAddress:(size_t)addr;
 
 @end

@@ -14,16 +14,13 @@
 #include <mach/mach.h>
 #include <unistd.h>
 
-//#define DEBUG_INFO
-
 @interface AXMemoryCore()
 
 @property (nonatomic, readwrite) NSMutableArray* addressList;
 @property (nonatomic, readwrite) NSMutableDictionary* aliasList;
 @property (nonatomic) task_t task;
-@property (nonatomic) pid_t pid;
+@property (nonatomic) NSUInteger pid;
 
-- (task_t)getTaskForPid:(pid_t)aPid;
 - (BOOL)searchRegionHasPrivilege:(vm_prot_t)pri
                        withBlock:(void (^)(vm_address_t offset, mach_msg_type_number_t size, char *buf))block;
 
@@ -31,16 +28,43 @@
 
 @implementation AXMemoryCore
 
-//@synthesize addressList = _addressList;
-//@synthesize aliasList = _aliasList;
-
-- (void)setPid:(int)aPid
++ (AXMemoryCore*)sharedInstance
 {
-  _pid = aPid >= 0 ? aPid : -1;
+  static AXMemoryCore* memCoreShared;
+  static dispatch_once_t onceToken;
+  
+  dispatch_once(&onceToken, ^{
+    memCoreShared = [[AXMemoryCore alloc] initShareInstance];
+  });
+  return memCoreShared;
 }
 
-- (id)initWithPid:(int)aPid
+- (void)setPid:(NSUInteger)aPid
 {
+  _pid = aPid;
+  kern_return_t kr;
+  mach_port_name_t tmpTask;
+  kr = task_for_pid(mach_task_self(), _pid, &tmpTask);
+  if (kr != KERN_SUCCESS)
+  {
+#ifdef DEBUG_INFO
+    NSLog(@"task_for_pid failed, the pid:%d may not valid, kr:%d\n", _pid, kr);
+#endif
+    exit(-1);
+  }
+  _task = tmpTask;
+#ifdef DEBUG_INFO
+  NSLog(@"task: %d\n", _task);
+#endif
+}
+
+- (id)init
+{
+  return nil;
+}
+
+- (id)initShareInstance
+{  
   // Make sure we're root
   if(getuid() && geteuid())
   {
@@ -51,26 +75,12 @@
   self = [super init];
   if(self)
   {
-    self.pid = aPid;
-    self.task = [self getTaskForPid:self.pid];
     _addressList = [[NSMutableArray alloc] init];
     _aliasList = [[NSMutableDictionary alloc] init];
+    _lastChangedValue = INFINITY;
+    _lastSearchedValue = INFINITY;
   }
   return self;
-}
-
-- (task_t)getTaskForPid:(pid_t)aPid
-{
-  kern_return_t kr;
-  
-  kr = task_for_pid(mach_task_self(), aPid, &_task);
-  if (kr != KERN_SUCCESS)
-  {
-    NSLog(@"task_for_pid failed, the pid may not valid\n");
-    exit(-1);
-  }
-  
-  return _task;
 }
 
 - (BOOL)changeValueInAddressListToIntValue:(int)var
@@ -91,7 +101,7 @@
   return YES;
 }
 
-- (BOOL)changeToIntValue:(int)var forAddress:(int)addr
+- (BOOL)changeToIntValue:(int)var forAddress:(size_t)addr
 {
   kern_return_t kr;
   
@@ -120,15 +130,27 @@
 
 - (NSArray*)searchForIntValue:(int)tVar
 {
+#ifdef DEBUG_INFO
+  NSLog(@"searchForIntValue: %d", tVar);
+#endif
   if (self.addressList.count)
   {
-    for ( NSNumber* addr in [self.addressList reverseObjectEnumerator] )
+    NSMutableArray* objectsNeedBeRemove = [NSMutableArray array];
+    for (NSNumber* addr in self.addressList)
     {
-      if ([self intValueForAddress:addr.intValue] != tVar)
+      int curVal = [self intValueForAddress:addr.unsignedLongValue];
+      if (curVal != tVar)
       {
-        [(NSMutableArray *)self.addressList removeObject:addr];
+#ifdef DEBUG_INFO
+        NSLog(@"addr %08lx, current value: %d", addr.unsignedLongValue, [self intValueForAddress:addr.unsignedLongValue]);
+#endif
+        [objectsNeedBeRemove addObject:addr];
       }
     }
+#ifdef DEBUG_INFO
+    NSLog(@"%d were removed", objectsNeedBeRemove.count);
+#endif
+    [(NSMutableArray *)self.addressList removeObjectsInArray:objectsNeedBeRemove];
   }
   else
   {
@@ -152,7 +174,7 @@
   [self searchRegionHasPrivilege:VM_PROT_READ | VM_PROT_WRITE
                        withBlock:^(vm_address_t offset, mach_msg_type_number_t size, char *buf) {
 #ifdef DEBUG_INFO
-                         NSLog(@"search region: %x", offset);
+                         NSLog(@"search region: %08ux", offset);
 #endif
                          int len = strlen(key);
                          for (size_t i = 0; i < size-len+1; i++)
@@ -183,6 +205,8 @@
   
   mach_msg_type_number_t region_size = 0;
   vm_region_basic_info_data_t info;
+  memset(&info, 0, sizeof(vm_region_basic_info_data_t));
+  
   mach_msg_type_number_t infoCnt;
   mach_port_t objname;
   
@@ -202,7 +226,7 @@
     if (kr != KERN_SUCCESS)
     {
 #ifdef DEBUG_INFO
-      fprintf(stderr, "vm_region failed for address: 0x%x err: %d\n", region_addr, kr);
+      fprintf(stderr, "vm_region failed for address: 0x%x err: %d task: %d\n", region_addr, kr, self.task);
 #endif
       return NO;
     }
@@ -223,7 +247,7 @@
     if (kr != KERN_SUCCESS)
     {
 #ifdef DEBUG_INFO
-      fprintf(stderr, "vm_read_overwrite failed for address: 0x%x err: %d\n", region_addr, kr);
+      fprintf(stderr, "vm_read_overwrite failed for address: 0x%x err: %d task: %d\n", region_addr, kr, self.task);
 #endif
       free(region_buf);
       return NO;
@@ -236,12 +260,14 @@
   return YES;
 }
 
-- (int)intValueForAddress:(int)addr
+- (int)intValueForAddress:(size_t)addr
 {
   kern_return_t kr;
   
   mach_msg_type_number_t region_size = 0;
   vm_region_basic_info_data_t info;
+  memset(&info, 0, sizeof(vm_region_basic_info_data_t));
+  
   mach_msg_type_number_t infoCnt;
   mach_port_t objname;
   
@@ -255,25 +281,33 @@
                  &infoCnt,
                  &objname);
   
-  if(kr == KERN_SUCCESS && info.protection & VM_PROT_READ)
+  if (kr == KERN_SUCCESS)
   {
     char *ragion_buf = (char*)malloc(region_size);
     vm_size_t count;
     
     kr = vm_read_overwrite(self.task,
-                            region_addr,
-                            region_size,
-                            (vm_offset_t)ragion_buf,
-                            &count);
+                           region_addr,
+                           region_size,
+                           (vm_offset_t)ragion_buf,
+                           &count);
     
     if (kr == KERN_SUCCESS)
     {
-      int val = *(int*)(ragion_buf+addr-region_addr);
+      int val = *(int*)((size_t)ragion_buf+(size_t)addr-region_addr);
       free(ragion_buf);
       return val;
     }
+#ifdef DEBUG_INFO
+    printf("vm_read_overwrite addr: 0x%08x err: %d task:%d\n", region_addr, kr, self.task);
+#endif
+
     free(ragion_buf);
   }
+  
+#ifdef DEBUG_INFO
+  printf("vm_region addr: 0x%08x err: %d task:%d\n", region_addr, kr, self.task);
+#endif
   return INFINITY;
 }
 @end

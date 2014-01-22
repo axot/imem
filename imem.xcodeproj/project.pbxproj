@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		538A2E1E1886817900E4BD97 /* AXProcessCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 538A2E1D1886817900E4BD97 /* AXProcessCenter.m */; };
+		53A4CE5E188FF84500AE8AB6 /* AXHandlerHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */; };
+		53A4CE61188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE60188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m */; };
+		53A4CE64188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE63188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m */; };
+		53A4CE67188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE66188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.m */; };
+		53A4CE6A188FFB6C00AE8AB6 /* AXListCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE69188FFB6C00AE8AB6 /* AXListCommandHandlerBase.m */; };
+		53A4CE6D188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE6C188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.m */; };
+		53A4CE70188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE6F188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.m */; };
+		53A4CE741890039D00AE8AB6 /* NSString+Stripped.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE731890039D00AE8AB6 /* NSString+Stripped.m */; };
+		53A4CE771890081A00AE8AB6 /* AXQuitCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE761890081A00AE8AB6 /* AXQuitCommandHandlerBase.m */; };
+		53A4CE7A1890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE791890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.m */; };
 		53B42EEE1886B6320007ACED /* libhistory.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B42EE51886B34E0007ACED /* libhistory.6.0.dylib */; };
 		53B42EEF1886B63E0007ACED /* libreadline.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B42EEA1886B34E0007ACED /* libreadline.6.0.dylib */; };
 		53ED3BEA188581CF00AA5C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ED3BE9188581CF00AA5C56 /* Foundation.framework */; };
@@ -35,8 +44,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		538A2E1C1886817900E4BD97 /* AXProcessCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXProcessCenter.h; sourceTree = "<group>"; };
-		538A2E1D1886817900E4BD97 /* AXProcessCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProcessCenter.m; sourceTree = "<group>"; };
+		53A4CE5C188FF84500AE8AB6 /* AXHandlerHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXHandlerHelp.h; sourceTree = "<group>"; };
+		53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHandlerHelp.m; sourceTree = "<group>"; };
+		53A4CE5F188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXChangeCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE60188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXChangeCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE62188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXSearchCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE63188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXSearchCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE65188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXAliasCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE66188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXAliasCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE68188FFB6C00AE8AB6 /* AXListCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXListCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE69188FFB6C00AE8AB6 /* AXListCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXListCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE6B188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXResetCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE6C188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXResetCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE6E188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXHelpCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE6F188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHelpCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE721890039D00AE8AB6 /* NSString+Stripped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Stripped.h"; sourceTree = "<group>"; };
+		53A4CE731890039D00AE8AB6 /* NSString+Stripped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Stripped.m"; sourceTree = "<group>"; };
+		53A4CE751890081A00AE8AB6 /* AXQuitCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXQuitCommandHandlerBase.h; sourceTree = "<group>"; };
+		53A4CE761890081A00AE8AB6 /* AXQuitCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXQuitCommandHandlerBase.m; sourceTree = "<group>"; };
+		53A4CE781890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXUserDefinedAliasCommandHandler.h; sourceTree = "<group>"; };
+		53A4CE791890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXUserDefinedAliasCommandHandler.m; sourceTree = "<group>"; };
 		53B42EDA1886B34E0007ACED /* chardefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chardefs.h; sourceTree = "<group>"; };
 		53B42EDB1886B34E0007ACED /* history.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = history.h; sourceTree = "<group>"; };
 		53B42EDC1886B34E0007ACED /* keymaps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = keymaps.h; sourceTree = "<group>"; };
@@ -102,6 +129,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53A4CE5B188FF80900AE8AB6 /* CommandHandler */ = {
+			isa = PBXGroup;
+			children = (
+				53A4CE5C188FF84500AE8AB6 /* AXHandlerHelp.h */,
+				53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */,
+				53A4CE5F188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.h */,
+				53A4CE60188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m */,
+				53A4CE62188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.h */,
+				53A4CE63188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m */,
+				53A4CE65188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.h */,
+				53A4CE66188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.m */,
+				53A4CE781890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.h */,
+				53A4CE791890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.m */,
+				53A4CE68188FFB6C00AE8AB6 /* AXListCommandHandlerBase.h */,
+				53A4CE69188FFB6C00AE8AB6 /* AXListCommandHandlerBase.m */,
+				53A4CE6B188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.h */,
+				53A4CE6C188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.m */,
+				53A4CE6E188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.h */,
+				53A4CE6F188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.m */,
+				53A4CE751890081A00AE8AB6 /* AXQuitCommandHandlerBase.h */,
+				53A4CE761890081A00AE8AB6 /* AXQuitCommandHandlerBase.m */,
+			);
+			name = CommandHandler;
+			sourceTree = "<group>";
+		};
+		53A4CE711890036000AE8AB6 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				53A4CE721890039D00AE8AB6 /* NSString+Stripped.h */,
+				53A4CE731890039D00AE8AB6 /* NSString+Stripped.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		53B42ED71886B34E0007ACED /* readline.6.0-7 */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,12 +247,12 @@
 		53ED3BEF188581CF00AA5C56 /* imem */ = {
 			isa = PBXGroup;
 			children = (
+				53A4CE711890036000AE8AB6 /* Category */,
+				53A4CE5B188FF80900AE8AB6 /* CommandHandler */,
 				53ED3C181885828700AA5C56 /* AXCUIHandler.h */,
 				53ED3C191885828700AA5C56 /* AXCUIHandler.m */,
 				53ED3C1A1885828700AA5C56 /* AXMemoryCore.h */,
 				53ED3C1B1885828700AA5C56 /* AXMemoryCore.m */,
-				538A2E1C1886817900E4BD97 /* AXProcessCenter.h */,
-				538A2E1D1886817900E4BD97 /* AXProcessCenter.m */,
 				53ED3C1C1885828700AA5C56 /* main.m */,
 				53ED3BF0188581CF00AA5C56 /* Supporting Files */,
 			);
@@ -326,9 +387,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53A4CE6D188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.m in Sources */,
 				53ED3C1E1885828700AA5C56 /* AXMemoryCore.m in Sources */,
-				538A2E1E1886817900E4BD97 /* AXProcessCenter.m in Sources */,
+				53A4CE67188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.m in Sources */,
+				53A4CE6A188FFB6C00AE8AB6 /* AXListCommandHandlerBase.m in Sources */,
+				53A4CE64188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m in Sources */,
+				53A4CE70188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.m in Sources */,
+				53A4CE771890081A00AE8AB6 /* AXQuitCommandHandlerBase.m in Sources */,
+				53A4CE7A1890158D00AE8AB6 /* AXUserDefinedAliasCommandHandler.m in Sources */,
 				53ED3C1D1885828700AA5C56 /* AXCUIHandler.m in Sources */,
+				53A4CE741890039D00AE8AB6 /* NSString+Stripped.m in Sources */,
+				53A4CE5E188FF84500AE8AB6 /* AXHandlerHelp.m in Sources */,
+				53A4CE61188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m in Sources */,
 				53ED3C1F1885828700AA5C56 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

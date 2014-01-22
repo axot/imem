@@ -12,12 +12,12 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"c"] ||
       [command isEqualToString:@"change"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-    
     if(params.count == 3 && [params[0] isEqualToString:@"addr"])
     {
       printf("change 0x%lx to %d\n", [params[1] unsignedLongValue], [params[2] intValue]);
@@ -68,12 +68,6 @@
     return YES;
   }
   return NO;
-}
-
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
 }
 
 - (NSString*)handlerDescription

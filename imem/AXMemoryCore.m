@@ -6,8 +6,6 @@
 //
 //
 
-//#define DEBUG_INFO_MEMORYCORE
-
 #import "AXMemoryCore.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -205,16 +203,19 @@
   
   mach_msg_type_number_t region_size = 0;
   vm_region_basic_info_data_t info;
-  memset(&info, 0, sizeof(vm_region_basic_info_data_t));
   
-  mach_msg_type_number_t infoCnt;
+  /* must set to >= VM_REGION_BASIC_INFO_COUNT
+   * or will cause KERN_INVALID_ARGUMENT
+   * ref vm_map_region function from: http://www.opensource.apple.com/source/xnu/xnu-792.13.8/osfmk/vm/vm_map.c
+   */
+  mach_msg_type_number_t infoCnt = VM_REGION_BASIC_INFO_COUNT;
   mach_port_t objname;
   
   vm_address_t region_addr = 1;
   while((size_t)region_addr != 0)
   {
     region_addr += region_size;
-    
+
     kr = vm_region(self.task,
                    &region_addr,
                    &region_size,
@@ -266,9 +267,12 @@
   
   mach_msg_type_number_t region_size = 0;
   vm_region_basic_info_data_t info;
-  memset(&info, 0, sizeof(vm_region_basic_info_data_t));
   
-  mach_msg_type_number_t infoCnt;
+  /* must set to >= VM_REGION_BASIC_INFO_COUNT
+   * or will cause KERN_INVALID_ARGUMENT
+   * ref vm_map_region function from: http://www.opensource.apple.com/source/xnu/xnu-792.13.8/osfmk/vm/vm_map.c
+   */
+  mach_msg_type_number_t infoCnt = VM_REGION_BASIC_INFO_COUNT;
   mach_port_t objname;
   
   vm_address_t region_addr = addr;

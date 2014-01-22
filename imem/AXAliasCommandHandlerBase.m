@@ -12,11 +12,11 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"a"] || [command isEqualToString:@"alias"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-
     // show all alias
     if (params.count == 0)
     {
@@ -41,12 +41,6 @@
   }
   
   return NO;
-}
-
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
 }
 
 - (NSString*)handlerDescription

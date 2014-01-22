@@ -12,13 +12,13 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"l"] ||
       [command isEqualToString:@"ls"] ||
       [command isEqualToString:@"list"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-
     // show current address list
     if (params.count == 0)
     {
@@ -28,9 +28,8 @@
       int i = 0;
       for (NSNumber* addr in addrs)
       {
-        vm32_offset_t addrVM = [addr unsignedIntValue];
-        int value = [[AXMemoryCore sharedInstance] intValueForAddress:addrVM];
-        printf("[%d] 0x%08x (%d)\n", i, addrVM, value);
+        int value = [[AXMemoryCore sharedInstance] intValueForAddress:addr.unsignedIntValue];
+        printf("[%d] 0x%08x (%d)\n", i, addr.unsignedIntValue, value);
         ++i;
       }
       
@@ -47,12 +46,6 @@
     }
   }
   return NO;
-}
-
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
 }
 
 - (NSString*)handlerDescription

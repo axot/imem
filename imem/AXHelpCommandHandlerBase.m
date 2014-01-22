@@ -12,15 +12,15 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"h"] ||
       [command isEqualToString:@"help"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-
     if (params.count == 0)
     {
-      printf("iMem Command Help\n\n%s\n", help.handlerDescription.UTF8String);
+      printf("iMem Command Help\n\n%s", help.handlerDescription.UTF8String);
     }
     else
     {
@@ -32,16 +32,10 @@
   return NO;
 }
 
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
-}
-
 - (NSString*)handlerDescription
 {
   return @"[h | help]\n"
-          "\t\tshow this description\n";
+          "\t\tshow this description\n\n";
 }
 
 @end

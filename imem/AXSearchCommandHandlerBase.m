@@ -13,12 +13,12 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"s"] ||
       [command isEqualToString:@"search"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-    
     NSArray* resultList = nil;
     
     // search the same value as last time using address list
@@ -70,12 +70,6 @@
     return YES;
   }
   return NO;
-}
-
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
 }
 
 - (NSString*)handlerDescription

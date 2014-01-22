@@ -12,12 +12,12 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"q"] ||
       [command isEqualToString:@"quit"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-
     if (params.count == 0)
     {
       exit(EXIT_SUCCESS);
@@ -30,12 +30,6 @@
     }
   }
   return NO;
-}
-
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
 }
 
 - (NSString*)handlerDescription

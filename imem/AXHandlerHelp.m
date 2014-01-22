@@ -31,7 +31,7 @@
 
   for (id handlerHelp in self.handlers)
   {
-    if ([handlerHelp isKindOfClass:[AXHandlerHelp class]])
+    if ([[handlerHelp class] conformsToProtocol:@protocol(AXHandlerProtocol)])
     {
       result = [handlerHelp handlerCommand:command withParameters:params withSuperHelper:self] ? YES : result;
     }

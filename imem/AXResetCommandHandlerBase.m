@@ -12,12 +12,12 @@
 
 - (BOOL)handlerCommand:(NSString*)command withParameters:(NSArray*)params withSuperHelper:(AXHandlerHelp *)help
 {
+  if (command == nil)  command = @"";
+  if (params == nil)  params = @[];
+
   if ([command isEqualToString:@"r"] ||
       [command isEqualToString:@"reset"])
   {
-    if (command == nil)  command = @"";
-    if (params == nil)  params = @[];
-
     // reset latest address list
     if (params.count == 0)
     {
@@ -32,12 +32,6 @@
     }
   }
   return NO;
-}
-
-- (BOOL)setHandler:(AXHandlerHelp*)handler
-{
-  [super setHandler:self];
-  return YES;
 }
 
 - (NSString*)handlerDescription

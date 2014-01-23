@@ -20,9 +20,17 @@
   {
     if(params.count == 3 && [params[0] isEqualToString:@"addr"])
     {
-      printf("change 0x%lx to %d\n", [params[1] unsignedLongValue], [params[2] intValue]);
+      unsigned int addr;
+      if ([params[1] hasPrefix:@"0x"])
+      {
+        NSScanner* scanner = [NSScanner scannerWithString:params[1]];
+        [scanner scanHexInt:&addr];
+      }
+      else addr = [params[1] unsignedIntValue];
+
+      printf("change 0x%x to %d", addr, [params[2] intValue]);
       [[AXMemoryCore sharedInstance] changeToIntValue:[params[2] intValue]
-                                           forAddress:[params[1] unsignedLongValue]];
+                                           forAddress:addr];
     }
     
     else if(params.count == 4 && [params[0] isEqualToString:@"range"])

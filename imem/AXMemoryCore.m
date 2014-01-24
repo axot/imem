@@ -18,6 +18,9 @@
 @property (nonatomic, readwrite) NSMutableDictionary* aliasList;
 @property (nonatomic) task_t task;
 @property (nonatomic) NSUInteger pid;
+@property (nonatomic) NSUInteger lastSearchedRegionAddr;
+@property (nonatomic) NSUInteger lastSearchedRegionSize;
+@property (nonatomic) char* lastSearchedBuffer;
 
 - (BOOL)searchRegionHasPrivilege:(vm_prot_t)pri
                        withBlock:(void (^)(vm_address_t offset, mach_msg_type_number_t size, char *buf))block;
@@ -263,6 +266,13 @@
 
 - (int)intValueForAddress:(size_t)addr
 {
+  if (addr >= self.lastSearchedRegionAddr &&
+      addr <= self.lastSearchedRegionAddr + self.lastSearchedRegionSize)
+  {
+    int val = *(int*)((size_t)self.lastSearchedBuffer+(size_t)addr-self.lastSearchedRegionAddr);
+    return val;
+  }
+  
   kern_return_t kr;
   
   mach_msg_type_number_t region_size = 0;
@@ -298,6 +308,13 @@
     
     if (kr == KERN_SUCCESS)
     {
+      if(region_addr != self.lastSearchedRegionAddr)
+      {
+        if(self.lastSearchedBuffer) free(self.lastSearchedBuffer);
+        self.lastSearchedBuffer = (char*)malloc(region_size);
+        self.lastSearchedRegionAddr = region_addr;
+        self.lastSearchedRegionSize = region_size;
+      }
       int val = *(int*)((size_t)ragion_buf+(size_t)addr-region_addr);
       free(ragion_buf);
       return val;

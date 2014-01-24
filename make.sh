@@ -10,7 +10,7 @@ ldid -Sentitlements.xml build/Release-iphoneos/imem.app/imem
 
 elif [ "$1" == "trans" ] ; then
 
-scp build/Release-iphoneos/imem.app/imem root@192.168.0.108:/usr/bin
+scp build/Release-iphoneos/imem.app/imem root@192.168.11.4:/usr/bin
 
 elif [ "$1" == "repo" ] ; then
 

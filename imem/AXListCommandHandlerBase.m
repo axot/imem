@@ -28,7 +28,7 @@
       int i = 0;
       for (NSNumber* addr in addrs)
       {
-        int value = [[AXMemoryCore sharedInstance] intValueForAddress:addr.unsignedIntValue];
+        int value = [[AXMemoryCore sharedInstance] valueForAddress:addr.unsignedIntValue];
         printf("[%d] 0x%08x (%d)\n", i, addr.unsignedIntValue, value);
         ++i;
       }

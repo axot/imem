@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5357601518C5C2520080CBE6 /* AXTypeCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5357601418C5C2520080CBE6 /* AXTypeCommandHandlerBase.m */; };
 		53A4CE5E188FF84500AE8AB6 /* AXHandlerHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */; };
 		53A4CE61188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE60188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m */; };
 		53A4CE64188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE63188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5357601318C5C2520080CBE6 /* AXTypeCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXTypeCommandHandlerBase.h; sourceTree = "<group>"; };
+		5357601418C5C2520080CBE6 /* AXTypeCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXTypeCommandHandlerBase.m; sourceTree = "<group>"; };
 		53A4CE5C188FF84500AE8AB6 /* AXHandlerHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXHandlerHelp.h; sourceTree = "<group>"; };
 		53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHandlerHelp.m; sourceTree = "<group>"; };
 		53A4CE5F188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXChangeCommandHandlerBase.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				53A4CE6F188FFDE200AE8AB6 /* AXHelpCommandHandlerBase.m */,
 				53A4CE751890081A00AE8AB6 /* AXQuitCommandHandlerBase.h */,
 				53A4CE761890081A00AE8AB6 /* AXQuitCommandHandlerBase.m */,
+				5357601318C5C2520080CBE6 /* AXTypeCommandHandlerBase.h */,
+				5357601418C5C2520080CBE6 /* AXTypeCommandHandlerBase.m */,
 			);
 			name = CommandHandler;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				53A4CE741890039D00AE8AB6 /* NSString+Stripped.m in Sources */,
 				53A4CE5E188FF84500AE8AB6 /* AXHandlerHelp.m in Sources */,
 				53A4CE61188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m in Sources */,
+				5357601518C5C2520080CBE6 /* AXTypeCommandHandlerBase.m in Sources */,
 				53ED3C1F1885828700AA5C56 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

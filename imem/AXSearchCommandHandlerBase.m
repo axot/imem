@@ -31,7 +31,7 @@
       else
       {
         printf("searching for %d\n", [AXMemoryCore sharedInstance].lastSearchedValue);
-        resultList = [[AXMemoryCore sharedInstance] searchForIntValue:[AXMemoryCore sharedInstance].lastSearchedValue];
+        resultList = [[AXMemoryCore sharedInstance] searchForValue:[AXMemoryCore sharedInstance].lastSearchedValue];
       }
 
     }
@@ -46,7 +46,7 @@
       }
       else
       {
-        resultList = [[AXMemoryCore sharedInstance] searchForIntValue:[params[0] intValue]];
+        resultList = [[AXMemoryCore sharedInstance] searchForValue:[params[0] intValue]];
         [AXMemoryCore sharedInstance].lastSearchedValue = [params[0] intValue];
       }
     }

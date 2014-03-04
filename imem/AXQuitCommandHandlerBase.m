@@ -35,7 +35,7 @@
 - (NSString*)handlerDescription
 {
   return @"[q | quit]\n"
-          "\t\tabort program\n\n";
+          "\t\tquit program\n\n";
 }
 
 @end

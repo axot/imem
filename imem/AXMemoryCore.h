@@ -17,12 +17,22 @@
 
 + (AXMemoryCore*)sharedInstance;
 - (void)setPid:(NSUInteger)aPid;
-- (NSArray*)searchForIntValue:(int)val;
+- (NSArray*)searchForValue:(int)val;
+- (NSArray*)searchForIntValue:(int)val __attribute__((deprecated));
+
 - (NSArray*)searchForString:(const char*)key;
-- (BOOL)changeValueInAddressListToIntValue:(int)var;
-- (BOOL)changeToIntValue:(int)var forAddress:(size_t)addr;
+
+- (BOOL)changeValueInAddressListToValue:(int)var;
+- (BOOL)changeValueInAddressListToIntValue:(int)var __attribute__((deprecated));
+
+- (BOOL)changeToValue:(int)var forAddress:(size_t)addr;
+- (BOOL)changeToIntValue:(int)var forAddress:(size_t)addr __attribute__((deprecated));
+
 - (void)resetAddressList;
 - (BOOL)setAlias:(NSString*)name forAddresses:(NSArray*)addresses;
-- (int)intValueForAddress:(size_t)addr;
+- (void)setTypeLength:(int)length;
+
+- (int)valueForAddress:(size_t)addr;
+- (int)intValueForAddress:(size_t)addr __attribute__((deprecated));
 
 @end

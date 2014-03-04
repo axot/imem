@@ -11,7 +11,7 @@
 
 #pragma mark -- Main entry
 
-#define __VER__ "v0.2"
+#define __VER__ "v0.3"
 
 int main(int argc, const char * argv[])
 {

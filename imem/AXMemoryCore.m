@@ -417,14 +417,15 @@
         addr <= self.lastSearchedRegionAddr + self.lastSearchedRegionSize)
     {
         int val = INFINITY;
+        size_t bufAddr = (size_t)self.lastSearchedBuffer+(size_t)addr-self.lastSearchedRegionAddr;
+        
         if (self.typeLength == sizeof(int))
         {
-            val = *(int*)((size_t)self.lastSearchedBuffer+(size_t)addr-self.lastSearchedRegionAddr);
-
+            val = *(int*)(bufAddr);
         }
         else if (self.typeLength == sizeof(short))
         {
-            val = *(short*)((size_t)self.lastSearchedBuffer+(size_t)addr-self.lastSearchedRegionAddr);
+            val = *(short*)(bufAddr);
         }
         return val;
     }
@@ -468,6 +469,7 @@
             {
                 if(self.lastSearchedBuffer) free(self.lastSearchedBuffer);
                 self.lastSearchedBuffer = (char*)malloc(region_size);
+                memcpy(self.lastSearchedBuffer, ragion_buf, region_size);
                 self.lastSearchedRegionAddr = region_addr;
                 self.lastSearchedRegionSize = region_size;
             }

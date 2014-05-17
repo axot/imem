@@ -19,6 +19,7 @@
 #import "AXHelpCommandHandlerBase.h"
 #import "AXQuitCommandHandlerBase.h"
 #import "AXTypeCommandHandlerBase.h"
+#import "AXPrintCommandHandlerBase.h"
 #import "AXMemoryCore.h"
 
 /* Strip whitespace from the start and end of STRING.  Return a pointer
@@ -87,6 +88,9 @@ char *stripwhite(char *string)
         [_handlerHelp setHandler:handler];
         
         handler = [[AXQuitCommandHandlerBase alloc] init];
+        [_handlerHelp setHandler:handler];
+        
+        handler = [[AXPrintCommandHandlerBase alloc] init];
         [_handlerHelp setHandler:handler];
         
         handler = nil;

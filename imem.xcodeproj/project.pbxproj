@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5357601518C5C2520080CBE6 /* AXTypeCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5357601418C5C2520080CBE6 /* AXTypeCommandHandlerBase.m */; };
+		5364A5D51926583B00DFAEA2 /* AXPrintCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5364A5D41926583B00DFAEA2 /* AXPrintCommandHandlerBase.m */; };
 		53A4CE5E188FF84500AE8AB6 /* AXHandlerHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */; };
 		53A4CE61188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE60188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.m */; };
 		53A4CE64188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A4CE63188FFB2400AE8AB6 /* AXSearchCommandHandlerBase.m */; };
@@ -47,6 +48,8 @@
 /* Begin PBXFileReference section */
 		5357601318C5C2520080CBE6 /* AXTypeCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXTypeCommandHandlerBase.h; sourceTree = "<group>"; };
 		5357601418C5C2520080CBE6 /* AXTypeCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXTypeCommandHandlerBase.m; sourceTree = "<group>"; };
+		5364A5D31926583B00DFAEA2 /* AXPrintCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXPrintCommandHandlerBase.h; sourceTree = "<group>"; };
+		5364A5D41926583B00DFAEA2 /* AXPrintCommandHandlerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXPrintCommandHandlerBase.m; sourceTree = "<group>"; };
 		53A4CE5C188FF84500AE8AB6 /* AXHandlerHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXHandlerHelp.h; sourceTree = "<group>"; };
 		53A4CE5D188FF84500AE8AB6 /* AXHandlerHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXHandlerHelp.m; sourceTree = "<group>"; };
 		53A4CE5F188FFB0D00AE8AB6 /* AXChangeCommandHandlerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXChangeCommandHandlerBase.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				53A4CE761890081A00AE8AB6 /* AXQuitCommandHandlerBase.m */,
 				5357601318C5C2520080CBE6 /* AXTypeCommandHandlerBase.h */,
 				5357601418C5C2520080CBE6 /* AXTypeCommandHandlerBase.m */,
+				5364A5D31926583B00DFAEA2 /* AXPrintCommandHandlerBase.h */,
+				5364A5D41926583B00DFAEA2 /* AXPrintCommandHandlerBase.m */,
 			);
 			name = CommandHandler;
 			sourceTree = "<group>";
@@ -340,7 +345,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AX;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = axot.org;
 				TargetAttributes = {
 					53ED3C00188581D000AA5C56 = {
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53A4CE6D188FFDBE00AE8AB6 /* AXResetCommandHandlerBase.m in Sources */,
+				5364A5D51926583B00DFAEA2 /* AXPrintCommandHandlerBase.m in Sources */,
 				53ED3C1E1885828700AA5C56 /* AXMemoryCore.m in Sources */,
 				53A4CE67188FFB3500AE8AB6 /* AXAliasCommandHandlerBase.m in Sources */,
 				53A4CE6A188FFB6C00AE8AB6 /* AXListCommandHandlerBase.m in Sources */,
@@ -451,7 +457,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -491,7 +496,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -566,7 +570,6 @@
 		53ED3C16188581D000AA5C56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/imem.app/imem";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -589,7 +592,6 @@
 		53ED3C17188581D000AA5C56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/imem.app/imem";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

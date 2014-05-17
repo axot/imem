@@ -26,7 +26,7 @@
         NSScanner* scanner = [NSScanner scannerWithString:params[1]];
         [scanner scanHexInt:&addr];
       }
-      else addr = [params[1] unsignedIntValue];
+      else addr = (unsigned int)[params[1] longLongValue];
 
       printf("change 0x%x to %d", addr, [params[2] intValue]);
       [[AXMemoryCore sharedInstance] changeToValue:[params[2] intValue]

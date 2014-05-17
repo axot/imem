@@ -14,6 +14,7 @@
 @property (readonly) NSDictionary* aliasList;
 @property (nonatomic) int lastSearchedValue;
 @property (nonatomic) int lastChangedValue;
+@property (nonatomic, readonly) int typeLength;
 
 + (AXMemoryCore*)sharedInstance;
 - (void)setPid:(NSUInteger)aPid;

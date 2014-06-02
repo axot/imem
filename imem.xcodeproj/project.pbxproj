@@ -31,7 +31,6 @@
 		53ED3C1E1885828700AA5C56 /* AXMemoryCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3C1B1885828700AA5C56 /* AXMemoryCore.m */; };
 		53ED3C1F1885828700AA5C56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED3C1C1885828700AA5C56 /* main.m */; };
 		53ED3C281885879600AA5C56 /* entitlements.xml in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C251885879600AA5C56 /* entitlements.xml */; };
-		53ED3C291885879600AA5C56 /* make_all_cli.sh in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C261885879600AA5C56 /* make_all_cli.sh */; };
 		53ED3C2A1885879600AA5C56 /* make.sh in Resources */ = {isa = PBXBuildFile; fileRef = 53ED3C271885879600AA5C56 /* make.sh */; };
 /* End PBXBuildFile section */
 
@@ -107,7 +106,6 @@
 		53ED3C1C1885828700AA5C56 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		53ED3C23188583EA00AA5C56 /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 		53ED3C251885879600AA5C56 /* entitlements.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = entitlements.xml; sourceTree = SOURCE_ROOT; };
-		53ED3C261885879600AA5C56 /* make_all_cli.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = make_all_cli.sh; sourceTree = SOURCE_ROOT; };
 		53ED3C271885879600AA5C56 /* make.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = make.sh; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -273,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				53ED3C251885879600AA5C56 /* entitlements.xml */,
-				53ED3C261885879600AA5C56 /* make_all_cli.sh */,
 				53ED3C271885879600AA5C56 /* make.sh */,
 				53ED3BF1188581CF00AA5C56 /* imem-Info.plist */,
 				53ED3BF2188581CF00AA5C56 /* InfoPlist.strings */,
@@ -378,7 +375,6 @@
 			files = (
 				53ED3C2A1885879600AA5C56 /* make.sh in Resources */,
 				53ED3C281885879600AA5C56 /* entitlements.xml in Resources */,
-				53ED3C291885879600AA5C56 /* make_all_cli.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,24 +18,7 @@ int main(int argc, const char * argv[])
   @autoreleasepool
   {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    
-    /*
-      G       時代(AD等)
-      yy      年（下２桁）
-      yyyy    年（４桁）
-      MM      月（１〜１２）
-      MMM     月（Jan）
-      MMMM    月（Janualy）
-      dd      日（２桁）
-      H       時（ゼロ埋めなし）
-      HH      時（２桁、ゼロ埋めあり）
-      m       時（ゼロ埋めなし）
-      mm      時（２桁、ゼロ埋めあり）
-      s       時（ゼロ埋めなし）
-      ss      時（２桁、ゼロ埋めあり）
-      z       タイムゾーン
-     */
-    
+        
     // __DATE__ Jan 18 2014
     // __TIME__ 15:38:05
     [df setDateFormat:@"MM dd yyyy HH:mm:ss"];
